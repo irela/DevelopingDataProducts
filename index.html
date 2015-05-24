@@ -30,10 +30,10 @@
   <slides class="layout-widescreen">
     
     <!-- LOGO SLIDE -->
-        <slide class="title-slide segue nobackground">
+    <slide class="title-slide segue nobackground">
   <hgroup class="auto-fadein">
-    <h1>Project app</h1>
-    <h2></h2>
+    <h1>Nottingham Temperature Application</h1>
+    <h2>Explore monthly temperature in Nottingham</h2>
     <p><br/></p>
   </hgroup>
   <article></article>  
@@ -43,14 +43,16 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>Read-And-Delete</h2>
+    <h2>Application</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li>Edit YAML front matter</li>
-<li>Write using R Markdown</li>
-<li>Use an empty line followed by three dashes to separate slides!</li>
-</ol>
+    <ul>
+<li>This app presents a histogram of monthly average temperatures in Nottingham</li>
+<li> Users can choose temperature with a slider</li>
+<li> Calculates most typical month for a temperature</li>
+<li> Also shows most unlikely month for the temperature</li>
+<li> Chosen temperature and typical month shown on histogram image</li>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
@@ -58,32 +60,50 @@
 
 <slide class="class" id="slide1" style="background:;">
   <hgroup>
-    <h2>Slide 2</h2>
+    <h2>Data</h2>
   </hgroup>
   <article data-timings="">
-    
-  </article>
+    <ul>
+<li> The app is based on Nottingham monthly average temperature data</li>
+<li> The temperatures are monthly averages from 1920-1939</li>
+<li> The data is provided by R data packages</li>
+ </ul>
+ </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="class" id="slide2" style="background:;">
   <hgroup>
-    <h2>Slide 3</h2>
+    <h2>Calculations</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li>First point</li>
-<li>Second point</li>
-<li>Third point</li>
-</ol>
+  <p> The app finds the most likely month for a given temperature in the following way (in this example temp = 38.5 F)</p>
+<pre><code class="r">data(nottem)
+temperatures <- tapply(nottem, list(year = floor(time(nottem)), month = cycle(nottem)), c)
+temp <- 38.5
+ for (i in 1:12) {
+        mse[i] <- mean((temperatures[,i]- temp)^2)
+ }
+which.min(mse)
+</code></pre>
 
-  </article>
+<pre><code>## [1] &quot;1&quot;                                     
+</code></pre> 
+<p>The resulting 1 indicates January</p>
+ </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="class" id="slide3" style="background:;">
-  <article data-timings="">
-    
+<hgroup>
+    <h2>Further Development</h2>
+  </hgroup>    
+<article data-timings="">
+  <ul>
+<li  Provide different locations</li>
+<li> Longer time series data</li>
+<li> Compare decades to another</li>
+</ul>
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -94,26 +114,32 @@
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Read-And-Delete'>
+        data-slide=1 title='Nottingham Temperature Application'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Slide 2'>
+        data-slide=2 title='Application'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Slide 3'>
+        data-slide=3 title='Data'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title=''>
+        data-slide=4 title='Calculations'>
          4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Further Development'>
+         5
       </a>
     </li>
   </ul>
